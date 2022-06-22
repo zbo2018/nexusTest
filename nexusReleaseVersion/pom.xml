@@ -5,7 +5,7 @@
 
   <groupId>com.zbo.nexus.test</groupId>
   <artifactId>nexusReleaseVersion</artifactId>
-  <version>0.0.8</version>
+  <version>0.0.9-SNAPSHOT</version>
   <!--<version>${project.release.version}</version>-->
 
   <name>nexusReleaseVersion</name>
@@ -24,7 +24,7 @@
         <connection>scm:git:git@github.com:zbo2018/nexusTest.git</connection>
         <developerConnection>scm:git:git@github.com:zbo2018/nexusTest.git</developerConnection>
         <!--<tag>thoth-maven-release-plugin-1.7-fix-sequence</tag>-->
-      <tag>nexusReleaseVersion-0.0.8</tag>
+      <tag>HEAD</tag>
   </scm>
 
   <dependencies>
