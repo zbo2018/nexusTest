@@ -216,7 +216,8 @@
           <autoVersionSubmodules>true</autoVersionSubmodules>
           <!--release:perform中参数 https://maven.apache.org/maven-release/maven-release-plugin/perform-mojo.html-->
           <!--发布配置文件将从未来版本的super pom中删除 默认false-->
-          <useReleaseProfile>true</useReleaseProfile><!-- true:自动控制 false:自己控制-->
+          <!--在执行mvn release:perform时默认会生成api文档，如果默写注释不符合规范的话会造成构建失败，可以加参数-DuseReleaseProfile=false取消构建api文档，或则需要根据规范书写注释。-->
+          <useReleaseProfile>false</useReleaseProfile>
         </configuration>
       </plugin>
 
