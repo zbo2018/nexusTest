@@ -5,4 +5,6 @@ import java.util.List;
 public interface OrderService {
 
     public List<String> findAll();
+
+    public List<String> findResource();
 }
