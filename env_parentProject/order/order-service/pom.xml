@@ -36,22 +36,22 @@
     <dependency>
       <groupId>com.zbo.nexus.test</groupId>
       <artifactId>base-dubbo</artifactId>
-      <!--<version>RELEASE</version>-->
-      <version>LATEST</version>
+      <version>RELEASE</version>
+      <!--<version>LATEST</version>-->
     </dependency>
 
     <dependency>
       <groupId>com.zbo.nexus.test</groupId>
       <artifactId>order-interface</artifactId>
-      <!--<version>RELEASE</version>-->
-      <version>LATEST</version>
+      <version>RELEASE</version>
+      <!--<version>LATEST</version>-->
     </dependency>
 
     <dependency>
       <groupId>com.zbo.nexus.test</groupId>
       <artifactId>base-util</artifactId>
-      <!--<version>RELEASE</version>-->
-      <version>LATEST</version>
+      <version>RELEASE</version>
+      <!--<version>LATEST</version>-->
     </dependency>
 
     <dependency>
