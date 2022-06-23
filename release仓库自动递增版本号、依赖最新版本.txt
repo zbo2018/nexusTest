@@ -1,0 +1,109 @@
+创建组织"*"
+将组织行业由"*"变更为"*"
+添加角色"组织超级管理员"
+添加角色"超级管理员" 
+添加部门"*" 
+
+
+日志===========
+创建组织：创建人员、创建部门、创建角色、创建行业
+修改行业
+创建角色、添加角色、修改角色
+创建部门、修改部门
+
+
+解决正式环境组织、人员、部门、角色、行业日志错乱问题
+修改正式环境elasticsearch log数据
+nginx etag配置
+测试maven release deploy自动增加版本号
+
+
+
+
+如果需要跳过单元测试，可以加入参数 -Darguments="-DskipTests"，直接使用-Dmaven.test.skip=true是无效的。
+pom.xml首次创建
+	需要先提交到git，再执行下面的命令。否则会报错 pom.xml:added
+pom.xml被修改
+	需要先提交到git，再执行下面的命令。否则会报错 pom.xml:modified
+	执行下面的命令后会在项目文件夹下生成 pom.xml.releaseBackup 备份文件
+	jenkins 解决方法：工作空间-->清理工作空间，重新构建即可
+
+清除一些插件生成的相关文件
+	mvn release:clean -Darguments="-DskipTests"
+准备发布，相当于发布前的准备。此命令会首先去去掉版本号中的SNAPSHOT标志符，在svn服务器生成一个指定版本的tag，编译并打包项目
+	mvn release:prepare -Darguments="-DskipTests"
+	命令能自动增加版本号，但要自己手动按Enter键。其他依赖的地方版本号用 RELEASE，就不用设置版本号了
+正式发布提交
+	mvn release:perform -Darguments="-DskipTests"
+	命令会发布到release仓库，pom.xml会修改snapshort版本并递增版本号。然后自动提交到git
+	之后仍然可以用mvn deploy发布snapshort仓库
+回滚，如果prepare的过程中出现了错误可以执行此命令回滚prepare的操作。有两点需要注意：一是在svn服务器上创建的tag无法删除；二是如果执行了release:clean命令的话，无法进行回滚
+	mvn release:rollback -Darguments="-DskipTests"
+
+指定父模块升级的版本
+在父模块上执行，更新所有子模块依赖父模块的版本号（必须是model，parent不管用）
+	mvn release:update-versions -D-DautoVersionSubmodules=false -DdevelopmentVersion=0.0.5-SNAPSHOT
+	
+
+
+问题：
+	父子model项目，子项目parent version必须是明确的版本号，不能用 LATEST、 RELEASE
+	项目依赖其他项目jar 版本用LATEST、 RELEASE进行依赖。本地能拉到最新代码，但项目本身又无法deploy。
+缺点
+	合并到release的代码都要变更版本号，再deploy
+	依赖项目的地方都要手动变更版本号，再提交代码，并修改版本号再deploy,其他依赖依次类推
+	maven LATEST依赖最新版本，经常不生效
+	执行mvn release:prepare -Darguments="-DskipTests" 时要一直按enter键
+	代码改了，必须先提交git，才能执行命令
+	项目版本号改了，依赖该项目dependency版本号不会自动更改
+	
+
+========================================================================================
+========================================================================================
+========================================================================================
+========================================================================================
+
+
+1、maven-release-plugin 自动递增release版本号
+2、<version>RELEASE</version> 依赖最新的发布版本
+
+命令说明：
+	准备发布到maven release仓库
+		mvn release:prepare -Darguments="-DskipTests"
+	正式发布提交到maven release仓库
+		mvn release:perform -Darguments="-DskipTests"
+	指定版本（版本已存在时使用）
+		mvn release:update-versions -D-DautoVersionSubmodules=false -DdevelopmentVersion=0.0.5-SNAPSHOT
+	
+dev代码 pom.xml 配置
+	每个项目都配置 scm、maven-release-plugin、distributionManagement
+	项目自己的版本号都是 0.0.1-snapshort
+	依赖其他项目的版本号都是 0.0.1-snapshort
+	
+release代码 pom.xml配置
+	每个项目都配置 scm、maven-release-plugin、distributionManagement
+	项目自己的版本号都是 <version>0.0.1-snapshort</version>
+	依赖其他项目的版本号都是 <version>RELEASE</version>
+	
+release操作--首次构建：
+	先解除顶级pom 父子model依赖,并提交git
+	再depoly顶级pom项目
+	再还原顶级pom 项目父子model依赖，并提交git
+	再depoly子model, 子model的 parent父级项目版本号可以设置成 RELEASE
+	执行prepare
+	执行perform
+	
+release操作--单项目构建：
+	每次从dev合并代码后，都要先提交git 再deploy。否则会报错
+	构建修改的项目，按依赖的层级关系。先构建上层的pom，再构建下面层级的项目
+	每次prepare项目，版本号会自动增加为 0.0.*-snapshort，以后会依次递增。但要一直按enter键确认，也可以在命令里重新指定版本号
+	perform项目，会发布到maven release仓库（会去掉版本号中的SNAPSHOT标志符），pom.xml的修改会自动提交git
+	中间有合并、修改pom.xml或代码文件。也必须先提交git才能prepare
+	
+缺点：
+	无法用jenkins自动deploy。因为执行prepare命令需要按Enter键确认，并可以中途自定义版本号
+	update-versions更改pom.xml项目版本号，需要先提交git才能执行prepare、perform命令
+	每次发布release都会在git上创建tag
+	
+	
+	
