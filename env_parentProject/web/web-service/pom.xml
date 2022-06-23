@@ -6,7 +6,7 @@
 
   <parent>
     <groupId>com.zbo.nexus.test</groupId>
-    <artifactId>base-dubbo</artifactId>
+    <artifactId>base-web</artifactId>
     <version>RELEASE</version>
   </parent>
 
@@ -33,6 +33,13 @@
   </properties>
 
   <dependencies>
+'
+    <dependency>
+      <groupId>com.zbo.nexus.test</groupId>
+      <artifactId>base-dubbo</artifactId>
+      <version>RELEASE</version>
+      <!--<version>LATEST</version>-->
+    </dependency>
 
     <dependency>
       <groupId>com.zbo.nexus.test</groupId>
@@ -65,7 +72,7 @@
         <version>3.0.0-M2</version>
       </plugin>
 
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
