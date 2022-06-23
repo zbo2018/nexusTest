@@ -11,7 +11,7 @@
 
   <!--<groupId>com.zbo.nexus.test</groupId>-->
   <artifactId>base-dubbo</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>0.0.5</version>
   <packaging>jar</packaging>
 
   <name>base-dubbo</name>
@@ -51,4 +51,8 @@
 
   </dependencies>
 
+
+  <scm>
+    <tag>base-dubbo-0.0.5</tag>
+  </scm>
 </project>
