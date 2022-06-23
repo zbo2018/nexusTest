@@ -13,7 +13,7 @@
 
   <!--<groupId>com.zbo.nexus.test</groupId>-->
   <artifactId>base-dubbo</artifactId>
-  <version>0.0.8</version>
+  <version>0.0.9-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>base-dubbo</name>
@@ -24,7 +24,7 @@
     <url>scm:git:git@github.com:zbo2018/nexusTest.git</url>
     <connection>scm:git:git@github.com:zbo2018/nexusTest.git</connection>
     <developerConnection>scm:git:git@github.com:zbo2018/nexusTest.git</developerConnection>
-    <tag>base-dubbo-0.0.8</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
