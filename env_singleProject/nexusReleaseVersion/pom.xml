@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.zbo.nexus.test</groupId>
+  <artifactId>nexusReleaseVersion</artifactId>
+  <version>1.0.3-SNAPSHOT</version>
+  <!--<version>${project.release.version}</version>-->
+
+  <name>nexusReleaseVersion</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <!--<project.release.version>0.0.3</project.release.version>-->
+  </properties>
+
+
+    <!--git 远程仓库配置-->
+    <scm>
+        <url>scm:git:git@github.com:zbo2018/nexusTest.git</url>
+        <connection>scm:git:git@github.com:zbo2018/nexusTest.git</connection>
+        <developerConnection>scm:git:git@github.com:zbo2018/nexusTest.git</developerConnection>
+        <!--<tag>thoth-maven-release-plugin-1.7-fix-sequence</tag>-->
+      <tag>HEAD</tag>
+  </scm>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+
+    <!--构建配置-->
+    <build>
+        <finalName>rpa-saas-interface</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M2</version>
+            </plugin>
+
+            <!--
+                maven release插件：自动发布到maven仓库
+                作用：
+                    修改多模块项目的版本号
+                    修改好的版本号还需要用deploy命令将其发布到私有的maven仓库
+                执行过程：
+                    将当前的SNAPSHOT版本号修改为正式版；
+                    然后在SCM服务器（SVN或git）上打一个该版本的tag，编译程序并自动生成jar包、source源码包和javadoc文档包然后发布到指定的maven服务器上
+                    最后将当前的版本号增加为新的版本号并修改为SNAPSHOT，这样就相当于一个自动构建的流程了。
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M6</version>
+                <configuration>
+                    <!--官方文档 https://maven.apache.org/maven-release/maven-release-plugin/prepare-mojo.html-->
+                    <!-- 是否允许带时间戳的 SNAPSHOT 依赖项。 默认false-->
+                    <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+                    <!--是否为子版本分配父亲版本号，默认false-->
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <!--release:perform中参数 https://maven.apache.org/maven-release/maven-release-plugin/perform-mojo.html-->
+                    <!--发布配置文件将从未来版本的super pom中删除 默认false-->
+                    <useReleaseProfile>true</useReleaseProfile><!-- true:自动控制 false:自己控制-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <!--分发配置-->
+    <distributionManagement>
+        <!--定义snapshots仓库-->
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>snapshots-name</name>
+            <url>http://10.10.27.166:8081/repository/maven-snapshots/</url>
+            <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
+
+        <!--定义release仓库地址-->
+        <repository>
+            <id>nexus-releases</id>
+            <name>releases-name</name>
+            <url>http://10.10.27.166:8081/repository/maven-releases/</url>
+            <uniqueVersion>true</uniqueVersion>
+        </repository>
+    </distributionManagement>
+
+
+</project>
