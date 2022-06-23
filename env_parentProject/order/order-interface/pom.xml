@@ -5,7 +5,7 @@
 
   <groupId>com.zbo.nexus.test</groupId>
   <artifactId>order-interface</artifactId>
-  <version>1.3</version>
+  <version>1.4-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>order-interface</name>
@@ -15,7 +15,7 @@
     <url>scm:git:git@github.com:zbo2018/nexusTest.git</url>
     <connection>scm:git:git@github.com:zbo2018/nexusTest.git</connection>
     <developerConnection>scm:git:git@github.com:zbo2018/nexusTest.git</developerConnection>
-    <tag>order-interface-1.3</tag>
+    <tag>order-interface-1.2</tag>
   </scm>
 
   <properties>
