@@ -21,7 +21,8 @@
     <dependency>
       <groupId>com.zbo.nexus.test</groupId>
       <artifactId>nexusReleaseVersion</artifactId>
-      <version>LATEST</version><!--总是依赖最新版本-->
+      <!--<version>LATEST</version>--><!--总是依赖最新快照版本 or 发布版本-->
+      <version>RELEASE</version><!--总是依赖最新快照版本-->
     </dependency>
 
     <dependency>
