@@ -33,7 +33,7 @@
   </properties>
 
   <dependencies>
-'
+
     <dependency>
       <groupId>com.zbo.nexus.test</groupId>
       <artifactId>base-dubbo</artifactId>
