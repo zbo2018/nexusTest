@@ -11,7 +11,7 @@
 
   <!--<groupId>com.zbo.nexus.test</groupId>-->
   <artifactId>base-web</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>0.0.5</version>
   <packaging>pom</packaging>
 
   <name>base-web</name>
@@ -22,7 +22,7 @@
     <url>scm:git:git@github.com:zbo2018/nexusTest.git</url>
     <connection>scm:git:git@github.com:zbo2018/nexusTest.git</connection>
     <developerConnection>scm:git:git@github.com:zbo2018/nexusTest.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>base-web-0.0.5</tag>
   </scm>
 
   <properties>
