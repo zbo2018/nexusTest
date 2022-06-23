@@ -7,7 +7,7 @@
 
   <groupId>com.zbo.nexus.test</groupId>
   <artifactId>base-util</artifactId>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>base-util</name>
@@ -17,7 +17,7 @@
     <url>scm:git:git@github.com:zbo2018/nexusTest.git</url>
     <connection>scm:git:git@github.com:zbo2018/nexusTest.git</connection>
     <developerConnection>scm:git:git@github.com:zbo2018/nexusTest.git</developerConnection>
-    <tag>base-util-1.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
