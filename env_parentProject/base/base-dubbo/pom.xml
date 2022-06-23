@@ -6,7 +6,9 @@
   <parent>
     <groupId>com.zbo.nexus.test</groupId>
     <artifactId>base</artifactId>
-    <version>RELEASE</version>
+    <!--<version>RELEASE</version>-->
+    <!--<version>LATEST</version>-->
+    <version>0.0.5-SNAPSHOT</version>
   </parent>
 
   <!--<groupId>com.zbo.nexus.test</groupId>-->

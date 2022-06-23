@@ -21,10 +21,10 @@
 
 
     <!-- Child Module-->
-    <modules>
+    <!--<modules>
         <module>base-web</module>
         <module>base-dubbo</module>
-    </modules>
+    </modules>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
